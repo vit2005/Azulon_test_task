@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3eaea9e8b70b3d3459d21df0aa05142a, type: 3}
+  m_Name: SmallWorkspaceShopItem
+  m_EditorClassIdentifier: Assembly-CSharp::WorkspaceShopItem
+  id: 10
+  name: Small workspace
+  description: Add small amount of workspaces
+  icon: {fileID: -1687667030, guid: 116280b303e605746842c2cbfd75a6d9, type: 3}
+  currencyType: 0
+  price: 5
+  WorkPlacesAmount: 1
