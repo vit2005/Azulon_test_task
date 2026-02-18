@@ -10,7 +10,7 @@ public class PlayerData
 
     public void PutProgrammerToWorkplace(ProgrammerItem programmer)
     {
-        if (studioData.programmersMaxAmount < studioData.programmers.Count)
+        if (studioData.programmersMaxAmount > studioData.programmers.Count)
         {
             studioData.programmers.Add(programmer);
             inventoryData.programmers.Remove(programmer);
