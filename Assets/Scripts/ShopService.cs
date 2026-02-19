@@ -11,10 +11,11 @@ public class ShopService
         _handlers[type] = (item, data) => handler((T)item, data);
     }
 
+    // TODO: if item types count will rise - implement separate handlers for each type and move this logic to them
     public ShopService()
     {
         Register<CrunchShopItem>(ItemType.Crunch, (item, data) =>
-            data.studioData.StartCrunch(item.intencity));
+            GameController.Instance.CrunchController.StartCrunch(item.intencity));
 
         Register<WorkspaceShopItem>(ItemType.Workspace, (item, data) =>
             data.studioData.programmersMaxAmount += item.WorkPlacesAmount);
@@ -24,8 +25,7 @@ public class ShopService
 
         Register<RebirthShopItem>(ItemType.Rebrth, (item, data) =>
         {
-            data.inventoryData.Rebirth();
-            data.studioData.Rebirth();
+            GameController.Instance.RebirthController.Rebirth();
         });
     }
 
