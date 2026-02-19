@@ -22,7 +22,7 @@ public class ShopService
         Register<ProgrammerShopItem>(ItemType.Programmer, (item, data) =>
             data.inventoryData.programmers.Add(new ProgrammerItem { income = item.income }));
 
-        Register<RebrthShopItem>(ItemType.Rebrth, (item, data) =>
+        Register<RebirthShopItem>(ItemType.Rebrth, (item, data) =>
         {
             data.inventoryData.Rebirth();
             data.studioData.Rebirth();
