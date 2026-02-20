@@ -17,7 +17,7 @@ public enum ItemType
     Programmer = 0,
     Workspace = 1,
     Crunch = 2,
-    Rebrth = 3,
+    Rebirth = 3,
 
 }
 

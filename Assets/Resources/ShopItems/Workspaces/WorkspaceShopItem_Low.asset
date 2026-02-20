@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00c4d61132f80b44a996e908e60e45f8, type: 3}
+  m_Name: WorkspaceShopItem_Low
+  m_EditorClassIdentifier: Assembly-CSharp::WorkspaceShopItemSO
+  icon: {fileID: -1687667030, guid: 116280b303e605746842c2cbfd75a6d9, type: 3}
+  data:
+    id: 20
+    name: Workspace Low
+    description: Workspace Low Description
+    currencyType: 0
+    price: 5
+    iconURL: 
+    WorkPlacesAmount: 1

@@ -28,6 +28,12 @@ public class OnlineShopProvider : IShopProvider
         _runner.StartCoroutine(FetchItems(onSuccess, onError));
     }
 
+    public void TryPurchaseItem(ShopItemData item, Action onSuccess, Action<string> onError)
+    {
+        // TODO: implement server payment logic here, should not depend on the client for security reasons
+        throw new NotImplementedException();
+    }
+
     private IEnumerator FetchItems(Action<List<ShopItemData>> onSuccess, Action<string> onError)
     {
         using var request = UnityWebRequest.Get(_url);

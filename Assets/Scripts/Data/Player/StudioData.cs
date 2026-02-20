@@ -14,21 +14,4 @@ public class StudioData
     public event Action OnDataUpdated;
     public void NotifyUpdated() => OnDataUpdated?.Invoke();
 
-    /* TODO: Move this to specific classes if there will be more states with different mechanics 
-    public void StartCrunch(float intencity)
-    {
-        programmersState = ProgrammersState.Crunching;
-        stateStartTime = Time.time;
-        crunchIntencity = intencity;
-    }
-
-    public void Rebirth()
-    {
-        programmers.Clear();
-        programmersMaxAmount = 0;
-        programmersState = ProgrammersState.Idle;
-        stateStartTime = 0f;
-        crunchIntencity = 1f;
-    }
-    */
 }

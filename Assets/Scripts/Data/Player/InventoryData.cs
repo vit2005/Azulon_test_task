@@ -10,10 +10,4 @@ public class InventoryData
     public event Action OnDataUpdated;
     public void NotifyUpdated() => OnDataUpdated?.Invoke();
 
-    /* TODO: Move this to specific classes if there will be more states with different mechanics
-    public void Rebirth()
-    {
-        programmers.Clear();
-    }
-    */
 }

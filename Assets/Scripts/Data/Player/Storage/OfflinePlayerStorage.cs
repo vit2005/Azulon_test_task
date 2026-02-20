@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using UnityEngine;
@@ -23,6 +24,20 @@ public class OfflinePlayerStorage : IPlayerStorage
     {
         if (!File.Exists(_filePath))
         {
+            var currencies = new Dictionary<CurrencyType, int>();
+            currencies.Add(CurrencyType.Gold, 0);
+            currencies.Add(CurrencyType.Gems, 100);
+
+            var initialData = new PlayerData
+            {
+                currencies = currencies,
+                rebirths = 0,
+                studioData = new StudioData() { programmers = new List<ProgrammerItem>() },
+                inventoryData = new InventoryData() { programmers = new List<ProgrammerItem>() }
+            };
+
+            var json = JsonConvert.SerializeObject(initialData, _settings);
+            File.WriteAllText(_filePath, json);
             onSuccess?.Invoke(new PlayerData());
             return;
         }
