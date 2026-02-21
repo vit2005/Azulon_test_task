@@ -35,6 +35,7 @@ public class ShopService
 
         playerData.currencies[item.currencyType] -= item.price;
         _handlers[item.type](item, playerData);
+        playerData.NotifyUpdated();
     }
 
     public bool CanPurchase(ShopItemData item, PlayerData playerData) =>

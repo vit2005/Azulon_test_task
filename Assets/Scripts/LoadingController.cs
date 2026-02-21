@@ -10,9 +10,11 @@ public class LoadingController : MonoBehaviour
         var component = instance.AddComponent<RunnerHelper>();
         DontDestroyOnLoad(instance);
 
-        var gameController = new GameController();
-        gameController.InitRunner(component);
+        var gameController = new GameController(OnInitialized, component);
+    }
 
+    private void OnInitialized()
+    {
         SceneManager.LoadScene("Main");
     }
 }

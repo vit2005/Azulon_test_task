@@ -24,9 +24,11 @@ public class OfflinePlayerStorage : IPlayerStorage
     {
         if (!File.Exists(_filePath))
         {
-            var currencies = new Dictionary<CurrencyType, int>();
-            currencies.Add(CurrencyType.Gold, 0);
-            currencies.Add(CurrencyType.Gems, 100);
+            var currencies = new Dictionary<CurrencyType, float>
+            {
+                { CurrencyType.Gold, 0 },
+                { CurrencyType.Gems, 100 }
+            };
 
             var initialData = new PlayerData
             {

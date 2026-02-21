@@ -5,7 +5,7 @@ using UnityEngine;
 [Serializable]
 public class PlayerData 
 {
-    public Dictionary<CurrencyType, int> currencies = new Dictionary<CurrencyType, int>();
+    public Dictionary<CurrencyType, float> currencies = new Dictionary<CurrencyType, float>();
     public int rebirths = 0; // multiplier of income
     public StudioData studioData = new StudioData();
     public InventoryData inventoryData = new InventoryData();

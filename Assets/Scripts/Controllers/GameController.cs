@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameController
@@ -7,10 +8,13 @@ public class GameController
     private static GameController _instance;
     public static GameController Instance => _instance;
 
+    private Action _onInitializaed;
+
     public ShopService ShopService { get; }
     public PlayerData PlayerData { get; private set; }
     public CrunchController CrunchController { get; private set; }
     public RebirthController RebirthController { get; private set; }
+    public IncrementController IncrementController { get; private set; }
 
     public MainUI mainUI { get; private set; }
 
@@ -20,9 +24,11 @@ public class GameController
     public IPlayerStorage playerStorageProvider { get; private set; }
 
     // TODO: init OfflineShopProvider and OfflinePlayerStorage here
-    public GameController()
+    public GameController(Action onInitializaed, MonoBehaviour runner)
     {
         _instance = this;
+        this.runner = runner;
+        _onInitializaed = onInitializaed;
 
         InitOfflineShopProvider();
         InitOfflinePlayerStorage();
@@ -37,11 +43,9 @@ public class GameController
         PlayerData = playerData;
         CrunchController = new CrunchController(PlayerData.studioData);
         RebirthController = new RebirthController(PlayerData);
-    }
-
-    public void InitRunner(MonoBehaviour runner)
-    {
-        this.runner = runner;
+        IncrementController = new IncrementController(PlayerData, runner);
+        Application.wantsToQuit += OnDestroy;
+        _onInitializaed?.Invoke();
     }
 
     public void InitMainUI(MainUI mainUI)
@@ -75,5 +79,11 @@ public class GameController
     private void OnItemPurchaseFailed(string error)
     {
         throw new NotImplementedException();
+    }
+
+    public bool OnDestroy()
+    {
+        playerStorageProvider.Save(PlayerData, () => Debug.Log("Player data saved successfully"), (string e) => Debug.LogError($"Failed to save player data: {e}"));
+        return true;
     }
 }
