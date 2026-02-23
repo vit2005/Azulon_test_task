@@ -26,5 +26,4 @@ public enum ProgrammersState
     Idle = 0,
     Crunching = 1,
     Burnout = 2,
-
 }

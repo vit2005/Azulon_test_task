@@ -20,4 +20,5 @@ MonoBehaviour:
     currencyType: 0
     price: 29
     iconURL: 
+    iconId: 2
     income: 10

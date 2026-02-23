@@ -16,8 +16,6 @@ public class GameController
     public RebirthController RebirthController { get; private set; }
     public IncrementController IncrementController { get; private set; }
 
-    public MainUI mainUI { get; private set; }
-
     public MonoBehaviour runner { get; private set; }
 
     public IShopProvider shopProvider { get; private set; }
@@ -48,11 +46,6 @@ public class GameController
         _onInitializaed?.Invoke();
     }
 
-    public void InitMainUI(MainUI mainUI)
-    {
-        this.mainUI = mainUI;
-    }
-
     public void InitOfflineShopProvider()
     {
         var shopItems = Resources.LoadAll<ShopItemDataSO>("ShopItems");
@@ -71,19 +64,44 @@ public class GameController
         //shopProvider.TryPurchaseItem(data, OnItemPurchased, OnItemPurchaseFailed);
     }
 
-    private void OnItemPurchased()
-    {
-        throw new NotImplementedException();
-    }
+    //private void OnItemPurchased()
+    //{
+    //    throw new NotImplementedException();
+    //}
 
-    private void OnItemPurchaseFailed(string error)
-    {
-        throw new NotImplementedException();
-    }
+    //private void OnItemPurchaseFailed(string error)
+    //{
+    //    throw new NotImplementedException();
+    //}
 
     public bool OnDestroy()
     {
         playerStorageProvider.Save(PlayerData, () => Debug.Log("Player data saved successfully"), (string e) => Debug.LogError($"Failed to save player data: {e}"));
         return true;
+    }
+
+    public void SetProgrammer(ProgrammerItem programmerData)
+    {
+        if (PlayerData.studioData.programmers.Count == PlayerData.studioData.programmersMaxAmount) return;
+
+        PlayerData.inventoryData.programmers.Remove(programmerData);
+        PlayerData.inventoryData.NotifyUpdated();
+        PlayerData.studioData.programmers.Add(programmerData);
+        PlayerData.studioData.NotifyUpdated();
+    }
+
+    public void FreeProgrammer(ProgrammerItem programmerData)
+    {
+        PlayerData.studioData.programmers.Remove(programmerData);
+        PlayerData.studioData.NotifyUpdated();
+        PlayerData.inventoryData.programmers.Add(programmerData);
+        PlayerData.inventoryData.NotifyUpdated();
+    }
+
+    public void SellProgrammer(ProgrammerItem programmerData)
+    {
+        PlayerData.inventoryData.programmers.Remove(programmerData);
+        PlayerData.inventoryData.NotifyUpdated();
+        PlayerData.currencies[CurrencyType.Gold] += programmerData.price / 2; // Sell for half price
     }
 }

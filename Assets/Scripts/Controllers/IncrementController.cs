@@ -6,13 +6,16 @@ public class IncrementController
 {
     private float _goldPerSecond = 0;
     private PlayerData _playerData;
+    private MonoBehaviour _runner;
+    private Coroutine _incrementCoroutine;
 
     public IncrementController(PlayerData playerData, MonoBehaviour runner)
     {
-        _goldPerSecond = CalculateGoldPerSecond(playerData);
+        _runner = runner;
+        CalculateGoldPerSecond(playerData);
         _playerData = playerData;
-        playerData.OnDataUpdated += () => _goldPerSecond = CalculateGoldPerSecond(playerData);
-        runner.StartCoroutine(IncrementGold());
+        playerData.OnDataUpdated += () => CalculateGoldPerSecond(playerData);
+        _incrementCoroutine = runner.StartCoroutine(IncrementGold());
     }
 
     private IEnumerator IncrementGold()
@@ -25,7 +28,7 @@ public class IncrementController
         }
     }
 
-    private float CalculateGoldPerSecond(PlayerData playerData)
+    private void CalculateGoldPerSecond(PlayerData playerData)
     {
         float baseIncome = 1f;
         float programmers = 0f;
@@ -35,6 +38,14 @@ public class IncrementController
         }
         float crunchMultiplier = playerData.studioData.crunchIntensity;
 
-        return baseIncome + programmers * crunchMultiplier;
+        _goldPerSecond = baseIncome + programmers * crunchMultiplier;
+    }
+
+    public void Stop()
+    {
+        if (_incrementCoroutine != null)
+        {
+            _runner.StopCoroutine(_incrementCoroutine);
+        }
     }
 }

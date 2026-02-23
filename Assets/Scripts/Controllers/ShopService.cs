@@ -18,10 +18,24 @@ public class ShopService
             gameController.CrunchController.StartCrunch(item.intensity));
 
         Register<WorkspaceShopItem>(ItemType.Workspace, (item, data) =>
-            data.studioData.programmersMaxAmount += item.WorkPlacesAmount);
+            {
+                data.studioData.programmersMaxAmount += item.WorkPlacesAmount;
+                data.studioData.NotifyUpdated();
+            });
+
 
         Register<ProgrammerShopItem>(ItemType.Programmer, (item, data) =>
-            data.inventoryData.programmers.Add(new ProgrammerItem { income = item.income }));
+            {
+                var programmer = new ProgrammerItem { 
+                    name = item.name,
+                    icon = item.icon,
+                    iconId = item.iconId,
+                    income = item.income,
+                    price = item.price
+                };
+                data.inventoryData.programmers.Add(programmer);
+                data.inventoryData.NotifyUpdated();
+            });
 
         Register<RebirthShopItem>(ItemType.Rebirth, (item, data) =>
         {

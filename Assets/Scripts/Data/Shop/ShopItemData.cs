@@ -15,7 +15,7 @@ public abstract class ShopItemData
     public CurrencyType currencyType;
     public int price;
     public string iconURL;
-
+    public int iconId; // for items with icons from IconsCollection
     [NonSerialized] public Sprite icon;
 }
 

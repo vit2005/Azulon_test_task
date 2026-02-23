@@ -10,17 +10,19 @@ public class MainUI : MonoBehaviour
 
     private void Awake()
     {
-        GameController.Instance.InitMainUI(this);
-
         InitPlayerData();
+        InitInventory();
         InitShopItems();
     }
 
+
     private void InitPlayerData()
     {
-        GameController.Instance.PlayerData.OnDataUpdated += 
-            () => gameplayUI.UpdateData(GameController.Instance.PlayerData);
-        gameplayUI.UpdateData(GameController.Instance.PlayerData);
+        gameplayUI.Init(GameController.Instance.PlayerData);
+    }
+    private void InitInventory()
+    {
+        inventoryUI.Init(GameController.Instance.PlayerData);
     }
 
     private void InitShopItems()
@@ -45,9 +47,21 @@ public class MainUI : MonoBehaviour
         shopUI.gameObject.SetActive(true);
     }
 
+    public void HideShop()
+    {
+        // TODO: implement animation
+        shopUI.gameObject.SetActive(false);
+    }
+
     public void ShowInventory()
     {
         // TODO: implement animation
         inventoryUI.gameObject.SetActive(true);
+    }
+
+    public void HideInventory()
+    {
+        // TODO: implement animation
+        inventoryUI.gameObject.SetActive(false);
     }
 }

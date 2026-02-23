@@ -40,7 +40,7 @@ public class OfflinePlayerStorage : IPlayerStorage
 
             var json = JsonConvert.SerializeObject(initialData, _settings);
             File.WriteAllText(_filePath, json);
-            onSuccess?.Invoke(new PlayerData());
+            onSuccess?.Invoke(initialData);
             return;
         }
 
