@@ -31,6 +31,7 @@ public class IncrementController
     private void CalculateGoldPerSecond(PlayerData playerData)
     {
         float baseIncome = 1f;
+        float rebirth = (float)Math.Sqrt(playerData.rebirths);
         float programmers = 0f;
         foreach (var item in playerData.studioData.programmers)
         {
@@ -38,6 +39,6 @@ public class IncrementController
         }
         float crunchMultiplier = playerData.studioData.crunchIntensity;
 
-        _goldPerSecond = baseIncome + programmers * crunchMultiplier;
+        _goldPerSecond = baseIncome + programmers * crunchMultiplier + rebirth;
     }
 }

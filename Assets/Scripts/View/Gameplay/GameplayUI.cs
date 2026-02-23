@@ -47,7 +47,7 @@ public class GameplayUI : MonoBehaviour
 
     private void UpdateCurrencies()
     {
-        gold.text = _data.currencies[CurrencyType.Gold].ToString();
+        gold.text = _data.currencies[CurrencyType.Gold].ToString("F0");
         diamonds.text = _data.currencies[CurrencyType.Gems].ToString();
         rebirth.text = _data.rebirths.ToString();
     }
@@ -73,6 +73,14 @@ public class GameplayUI : MonoBehaviour
                 workspaces.Add(workspaceUI);
                 _workspacesAmount++;
             }
+        }
+        else if (diff < 0) // in case of Rebirth
+        {
+            foreach (var item in workspaces)
+            {
+                Destroy(item.gameObject);
+            }
+            workspaces.Clear();
         }
 
         foreach (var programmerData in _data.studioData.programmers)

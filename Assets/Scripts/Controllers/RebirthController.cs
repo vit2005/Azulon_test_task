@@ -9,6 +9,7 @@ public class RebirthController
 
     public void Rebirth()
     {
+        _playerData.currencies[CurrencyType.Gold] = 0;
         _playerData.rebirths++;
         _playerData.inventoryData.programmers.Clear();
 
