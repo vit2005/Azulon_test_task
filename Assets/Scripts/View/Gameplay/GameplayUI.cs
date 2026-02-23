@@ -72,6 +72,7 @@ public class GameplayUI : MonoBehaviour
                 Destroy(item.gameObject);
             }
             workspaces.Clear();
+            _workspacesAmount = 0;
         }
 
         foreach (var programmerData in _data.studioData.programmers)
