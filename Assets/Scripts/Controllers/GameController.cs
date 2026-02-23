@@ -11,6 +11,7 @@ public class GameController
 
     public ShopService ShopService { get; }
     public PlayerData PlayerData { get; private set; }
+    public InventoryController InventoryController { get; private set; }
     public CrunchController CrunchController { get; private set; }
     public RebirthController RebirthController { get; private set; }
     public IncrementController IncrementController { get; private set; }
@@ -38,6 +39,7 @@ public class GameController
     public void OnPlayerDataLoaded(PlayerData playerData)
     {
         PlayerData = playerData;
+        InventoryController = new InventoryController(PlayerData);
         CrunchController = new CrunchController(PlayerData.studioData, runner);
         RebirthController = new RebirthController(PlayerData);
         IncrementController = new IncrementController(PlayerData, runner);
@@ -59,48 +61,11 @@ public class GameController
     public void BuyItem(ShopItemData data)
     {
         ShopService.Purchase(data, PlayerData);
-
-        //shopProvider.TryPurchaseItem(data, OnItemPurchased, OnItemPurchaseFailed);
     }
-
-    //private void OnItemPurchased()
-    //{
-    //    throw new NotImplementedException();
-    //}
-
-    //private void OnItemPurchaseFailed(string error)
-    //{
-    //    throw new NotImplementedException();
-    //}
 
     public bool OnDestroy()
     {
         playerStorageProvider.Save(PlayerData, () => Debug.Log("Player data saved successfully"), (string e) => Debug.LogError($"Failed to save player data: {e}"));
         return true;
-    }
-
-    public void SetProgrammer(ProgrammerItem programmerData)
-    {
-        if (PlayerData.studioData.programmers.Count == PlayerData.studioData.programmersMaxAmount) return;
-
-        PlayerData.inventoryData.programmers.Remove(programmerData);
-        PlayerData.inventoryData.NotifyUpdated();
-        PlayerData.studioData.programmers.Add(programmerData);
-        PlayerData.studioData.NotifyUpdated();
-    }
-
-    public void FreeProgrammer(ProgrammerItem programmerData)
-    {
-        PlayerData.studioData.programmers.Remove(programmerData);
-        PlayerData.studioData.NotifyUpdated();
-        PlayerData.inventoryData.programmers.Add(programmerData);
-        PlayerData.inventoryData.NotifyUpdated();
-    }
-
-    public void SellProgrammer(ProgrammerItem programmerData)
-    {
-        PlayerData.inventoryData.programmers.Remove(programmerData);
-        PlayerData.inventoryData.NotifyUpdated();
-        PlayerData.currencies[CurrencyType.Gold] += programmerData.price / 2; // Sell for half price
     }
 }

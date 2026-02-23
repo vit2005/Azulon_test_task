@@ -36,7 +36,6 @@ public class GameplayUI : MonoBehaviour
     public void Init(PlayerData data)
     {
         _data = data;
-        LoadIcons();
         
         data.OnDataUpdated += UpdateCurrencies;
         data.studioData.OnDataUpdated += UpdateWorkspaces;
@@ -50,14 +49,6 @@ public class GameplayUI : MonoBehaviour
         gold.text = _data.currencies[CurrencyType.Gold].ToString("F0");
         diamonds.text = _data.currencies[CurrencyType.Gems].ToString();
         rebirth.text = _data.rebirths.ToString();
-    }
-
-    private void LoadIcons()
-    {
-        foreach (var item in _data.studioData.programmers)
-        {
-            item.icon = iconsCollection.icons.First(x => x.id == item.iconId).icon;
-        }
     }
 
     public void UpdateWorkspaces()
@@ -110,7 +101,7 @@ public class GameplayUI : MonoBehaviour
 
     public void FreeProgrammer(ProgrammerItem data)
     {
-        GameController.Instance.FreeProgrammer(data);
+        GameController.Instance.InventoryController.FreeProgrammer(data);
     }
 
     public void DecreaseCellSize()

@@ -7,7 +7,6 @@ public class InventoryUI : AnimatedScreen
 {
     [SerializeField] GameObject inventoryProgrammerPrefab;
     [SerializeField] Transform parent;
-    [SerializeField] IconsCollection iconsCollection;
     private PlayerData _playerData;
     private List<InventoryProgrammerUI> _instances = new List<InventoryProgrammerUI>();
 
@@ -15,17 +14,8 @@ public class InventoryUI : AnimatedScreen
     public void Init(PlayerData playerData)
     {
         _playerData = playerData;
-        LoadIcons();
         _playerData.inventoryData.OnDataUpdated += UpdateUI;
         UpdateUI();
-    }
-
-    private void LoadIcons()
-    {
-        foreach (var item in _playerData.inventoryData.programmers)
-        {
-            item.icon = iconsCollection.icons.First(x => x.id == item.iconId).icon;
-        }
     }
 
     private void UpdateUI()
@@ -55,12 +45,12 @@ public class InventoryUI : AnimatedScreen
 
     private void OnSetClick(ProgrammerItem data)
     {
-        GameController.Instance.SetProgrammer(data);
+        GameController.Instance.InventoryController.SetProgrammer(data);
     }
 
     private void OnSellClick(ProgrammerItem data)
     {
-        GameController.Instance.SellProgrammer(data);
+        GameController.Instance.InventoryController.SellProgrammer(data);
     }
 
     private void OnDestroy()

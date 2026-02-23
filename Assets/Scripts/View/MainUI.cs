@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MainUI : MonoBehaviour
@@ -7,6 +8,7 @@ public class MainUI : MonoBehaviour
     [SerializeField] GameplayUI gameplayUI;
     [SerializeField] InventoryUI inventoryUI;
     [SerializeField] ShopUI shopUI;
+    [SerializeField] IconsCollection iconsCollection;
 
     public ScreenType currentScreenType = ScreenType.Gameplay;
     public IScreen currentScreen;
@@ -22,6 +24,15 @@ public class MainUI : MonoBehaviour
     private void InitPlayerData()
     {
         gameplayUI.Init(GameController.Instance.PlayerData);
+
+        foreach (var item in GameController.Instance.PlayerData.inventoryData.programmers)
+        {
+            item.icon = iconsCollection.icons.First(x => x.id == item.iconId).icon;
+        }
+        foreach (var item in GameController.Instance.PlayerData.studioData.programmers)
+        {
+            item.icon = iconsCollection.icons.First(x => x.id == item.iconId).icon;
+        }
     }
     private void InitInventory()
     {

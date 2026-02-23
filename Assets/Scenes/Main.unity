@@ -5268,6 +5268,7 @@ MonoBehaviour:
   gameplayUI: {fileID: 1586371251}
   inventoryUI: {fileID: 1586018009}
   shopUI: {fileID: 1501691906}
+  iconsCollection: {fileID: 11400000, guid: e139c6d6950f617419c4e71d0e53c712, type: 2}
   currentScreenType: 0
 --- !u!1 &1533531514
 GameObject:
@@ -5708,7 +5709,6 @@ MonoBehaviour:
   fadeDuration: 0.1
   inventoryProgrammerPrefab: {fileID: 7429216995367199689, guid: 6fedc35958a36c04482e9c1efef467f5, type: 3}
   parent: {fileID: 574816860}
-  iconsCollection: {fileID: 11400000, guid: e139c6d6950f617419c4e71d0e53c712, type: 2}
 --- !u!114 &1586018010
 MonoBehaviour:
   m_ObjectHideFlags: 0
