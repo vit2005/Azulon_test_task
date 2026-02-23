@@ -83,7 +83,7 @@ public class GameplayUI : MonoBehaviour
             var freeWorkspace = workspaces.FirstOrDefault(x => x.IsFree);
             if (freeWorkspace == null) continue;
 
-            freeWorkspace.InitProgrammer(programmerData);
+            freeWorkspace.InitProgrammer(programmerData, FreeProgrammer);
         }
 
         switch (_data.studioData.programmersState)
@@ -100,12 +100,9 @@ public class GameplayUI : MonoBehaviour
         }
     }
 
-    public void AddProgrammer(ProgrammerItem data)
+    public void FreeProgrammer(ProgrammerItem data)
     {
-        var freeWorkspace = workspaces.FirstOrDefault(x => x.IsFree);
-        if (freeWorkspace == null) return;
-
-        freeWorkspace.InitProgrammer(data);
+        GameController.Instance.FreeProgrammer(data);
     }
 
     public void DecreaseCellSize()
@@ -124,5 +121,11 @@ public class GameplayUI : MonoBehaviour
         _cellSize = Mathf.Round(_cellSize);
         cellSizeText.text = _cellSize.ToString();
         grid.cellSize = new Vector2(_cellSize, _cellSize);
+    }
+
+    private void OnDestroy()
+    {
+        _data.OnDataUpdated -= UpdateCurrencies;
+        _data.studioData.OnDataUpdated -= UpdateWorkspaces;
     }
 }

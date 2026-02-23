@@ -11,20 +11,26 @@ public class InventoryProgrammerUI : MonoBehaviour
     private ProgrammerItem _data;
     public ProgrammerItem Data => _data;
 
-    public void Init(ProgrammerItem data)
+    private Action<ProgrammerItem> _onSetClick;
+    private Action<ProgrammerItem> _onSellClick;
+
+    public void Init(ProgrammerItem data, 
+        Action<ProgrammerItem> onSetClick, Action<ProgrammerItem> onSellClick)
     {
         _data = data;
+        _onSetClick = onSetClick;
+        _onSellClick = onSellClick;
         icon.sprite = data.icon;
         description.text = $"Title: {data.name}\nIncome: {data.income}";
     }
 
     public void OnPlaceClick()
     {
-        GameController.Instance.SetProgrammer(_data);
+        _onSetClick?.Invoke(_data);
     }
 
     public void OnSellClick()
     {
-        GameController.Instance.SellProgrammer(_data);
+        _onSellClick?.Invoke(_data);
     }
 }

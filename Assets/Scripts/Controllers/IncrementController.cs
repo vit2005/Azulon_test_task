@@ -40,12 +40,4 @@ public class IncrementController
 
         _goldPerSecond = baseIncome + programmers * crunchMultiplier;
     }
-
-    public void Stop()
-    {
-        if (_incrementCoroutine != null)
-        {
-            _runner.StopCoroutine(_incrementCoroutine);
-        }
-    }
 }

@@ -23,8 +23,4 @@ public class OfflineShopProvider : IShopProvider
         onSuccess?.Invoke(data);
     }
 
-    public void TryPurchaseItem(ShopItemData item, Action onSuccess, Action<string> onError)
-    {
-        
-    }
 }

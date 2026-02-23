@@ -47,7 +47,7 @@ public class InventoryUI : MonoBehaviour, IScreen
             if (_instances.Any(x => x.Data == item)) continue;
 
             var instance = Instantiate(inventoryProgrammerPrefab, parent).GetComponent<InventoryProgrammerUI>();
-            instance.Init(item);
+            instance.Init(item, OnSetClick, OnSellClick);
             _instances.Add(instance);
         }
 
@@ -63,5 +63,20 @@ public class InventoryUI : MonoBehaviour, IScreen
             Destroy(instancesToRemove[i].gameObject);
             _instances.Remove(instancesToRemove[i]);
         }
+    }
+
+    private void OnSetClick(ProgrammerItem data)
+    {
+        GameController.Instance.SetProgrammer(data);
+    }
+
+    private void OnSellClick(ProgrammerItem data)
+    {
+        GameController.Instance.SellProgrammer(data);
+    }
+
+    private void OnDestroy()
+    {
+        _playerData.inventoryData.OnDataUpdated -= UpdateUI;
     }
 }
