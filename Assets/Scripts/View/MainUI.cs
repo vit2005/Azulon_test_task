@@ -8,6 +8,9 @@ public class MainUI : MonoBehaviour
     [SerializeField] InventoryUI inventoryUI;
     [SerializeField] ShopUI shopUI;
 
+    public ScreenType currentScreenType = ScreenType.Gameplay;
+    public IScreen currentScreen;
+
     private void Awake()
     {
         InitPlayerData();
@@ -41,27 +44,31 @@ public class MainUI : MonoBehaviour
         shopUI.Init(list);
     }
 
+    public void ChangeState(ScreenType type, IScreen screen)
+    {
+        currentScreen?.Hide();
+        currentScreen = screen;
+        currentScreenType = type;
+        currentScreen?.Show();
+    }
+
     public void ShowShop()
     {
-        // TODO: implement animation
-        shopUI.gameObject.SetActive(true);
+        ChangeState(ScreenType.Shop, shopUI);
     }
 
     public void HideShop()
     {
-        // TODO: implement animation
-        shopUI.gameObject.SetActive(false);
+        ChangeState(ScreenType.Gameplay, null);
     }
 
     public void ShowInventory()
     {
-        // TODO: implement animation
-        inventoryUI.gameObject.SetActive(true);
+        ChangeState(ScreenType.Inventory, inventoryUI);
     }
 
     public void HideInventory()
     {
-        // TODO: implement animation
-        inventoryUI.gameObject.SetActive(false);
+        ChangeState(ScreenType.Gameplay, null);
     }
 }

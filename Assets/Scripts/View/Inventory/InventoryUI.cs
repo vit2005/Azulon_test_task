@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class InventoryUI : MonoBehaviour
+public class InventoryUI : MonoBehaviour, IScreen
 {
     [SerializeField] GameObject inventoryProgrammerPrefab;
     [SerializeField] Transform parent;
@@ -11,12 +11,25 @@ public class InventoryUI : MonoBehaviour
     private PlayerData _playerData;
     private List<InventoryProgrammerUI> _instances = new List<InventoryProgrammerUI>();
 
+
     public void Init(PlayerData playerData)
     {
         _playerData = playerData;
         LoadIcons();
         _playerData.inventoryData.OnDataUpdated += UpdateUI;
         UpdateUI();
+    }
+
+    public void Show()
+    {
+        // TODO: implement animation
+        gameObject.SetActive(true);
+    }
+
+    public void Hide()
+    {
+        // TODO: implement animation
+        gameObject.SetActive(false);
     }
 
     private void LoadIcons()

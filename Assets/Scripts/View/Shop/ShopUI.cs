@@ -9,12 +9,13 @@ public class ItemTypeItemPanel
     public GameObject itemPanel;
 }
 
-public class ShopUI : MonoBehaviour
+public class ShopUI : MonoBehaviour, IScreen
 {
     [SerializeField] List<ItemTypeItemPanel> panels;
     [SerializeField] GameObject itemPanelPrefab;
 
     private List<GameObject> _instances = new List<GameObject>();
+
 
     public void Init(List<ShopItemData> items)
     {
@@ -35,5 +36,15 @@ public class ShopUI : MonoBehaviour
         GameController.Instance.BuyItem(data); // TODO: add popups for purchase result
     }
 
-    
+    public void Show()
+    {
+        // TODO: implement animation
+        gameObject.SetActive(true);
+    }
+
+    public void Hide()
+    {
+        // TODO: implement animation
+        gameObject.SetActive(false);
+    }
 }
