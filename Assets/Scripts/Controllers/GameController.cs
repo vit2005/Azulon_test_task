@@ -21,7 +21,6 @@ public class GameController
     public IShopProvider shopProvider { get; private set; }
     public IPlayerStorage playerStorageProvider { get; private set; }
 
-    // TODO: init OfflineShopProvider and OfflinePlayerStorage here
     public GameController(Action onInitializaed, MonoBehaviour runner)
     {
         _instance = this;

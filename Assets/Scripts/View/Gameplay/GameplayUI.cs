@@ -26,7 +26,6 @@ public class GameplayUI : MonoBehaviour
     [Space]
     [SerializeField] private GameObject workspacePrefab;
     [SerializeField] private GameObject programmerPrefab;
-    private int _workspacesAmount;
     private int _programmerAmount;
     private List<WorkplaceUI> workspaces = new List<WorkplaceUI>();
     //private List<WorkplaceUI> programmers = new();
@@ -53,7 +52,7 @@ public class GameplayUI : MonoBehaviour
 
     public void UpdateWorkspaces()
     {
-        int diff = _data.studioData.programmersMaxAmount - _workspacesAmount;
+        int diff = _data.studioData.programmersMaxAmount - workspaces.Count;
         if (diff > 0)
         {
             for (int i = 0; i < diff; i++)
@@ -62,7 +61,6 @@ public class GameplayUI : MonoBehaviour
                 var workspaceUI = instance.GetComponent<WorkplaceUI>();
 
                 workspaces.Add(workspaceUI);
-                _workspacesAmount++;
             }
         }
         else if (diff < 0) // in case of Rebirth
@@ -72,7 +70,6 @@ public class GameplayUI : MonoBehaviour
                 Destroy(item.gameObject);
             }
             workspaces.Clear();
-            _workspacesAmount = 0;
         }
 
         foreach (var programmerData in _data.studioData.programmers)
