@@ -17,7 +17,8 @@ MonoBehaviour:
     id: 10
     name: Crunch Low
     description: Crunch Low Description
-    currencyType: 0
+    currencyType: 1
     price: 9
     iconURL: 
+    iconId: 0
     intensity: 1.5

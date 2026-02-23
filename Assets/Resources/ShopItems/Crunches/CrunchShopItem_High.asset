@@ -17,7 +17,8 @@ MonoBehaviour:
     id: 12
     name: Crunch High
     description: Crunch High Description
-    currencyType: 0
+    currencyType: 1
     price: 24
     iconURL: 
+    iconId: 0
     intensity: 5

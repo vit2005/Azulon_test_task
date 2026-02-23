@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class InventoryUI : MonoBehaviour, IScreen
+public class InventoryUI : AnimatedScreen
 {
     [SerializeField] GameObject inventoryProgrammerPrefab;
     [SerializeField] Transform parent;
@@ -18,18 +18,6 @@ public class InventoryUI : MonoBehaviour, IScreen
         LoadIcons();
         _playerData.inventoryData.OnDataUpdated += UpdateUI;
         UpdateUI();
-    }
-
-    public void Show()
-    {
-        // TODO: implement animation
-        gameObject.SetActive(true);
-    }
-
-    public void Hide()
-    {
-        // TODO: implement animation
-        gameObject.SetActive(false);
     }
 
     private void LoadIcons()

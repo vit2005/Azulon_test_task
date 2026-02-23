@@ -17,7 +17,8 @@ MonoBehaviour:
     id: 11
     name: Crunch Medium
     description: Crunch Medium Description
-    currencyType: 0
+    currencyType: 1
     price: 14
     iconURL: 
+    iconId: 0
     intensity: 2.5
