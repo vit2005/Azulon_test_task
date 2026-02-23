@@ -16,7 +16,7 @@ public class RebirthController
         studio.programmers.Clear();
         studio.programmersMaxAmount = 0;
         studio.programmersState = ProgrammersState.Idle;
-        studio.stateStartTime = 0f;
+        studio.secondsLeft = 0f;
         studio.crunchIntensity = 1f;
 
         _playerData.studioData.NotifyUpdated();

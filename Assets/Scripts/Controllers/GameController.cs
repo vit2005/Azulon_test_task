@@ -39,7 +39,7 @@ public class GameController
     public void OnPlayerDataLoaded(PlayerData playerData)
     {
         PlayerData = playerData;
-        CrunchController = new CrunchController(PlayerData.studioData);
+        CrunchController = new CrunchController(PlayerData.studioData, runner);
         RebirthController = new RebirthController(PlayerData);
         IncrementController = new IncrementController(PlayerData, runner);
         Application.wantsToQuit += OnDestroy;

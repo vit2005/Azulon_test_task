@@ -5463,6 +5463,10 @@ MonoBehaviour:
   iconsCollection: {fileID: 11400000, guid: e139c6d6950f617419c4e71d0e53c712, type: 2}
   grid: {fileID: 480974888}
   cellSizeText: {fileID: 377023073}
+  crunchIndicator: {fileID: 480974890}
+  defaultColor: {r: 1, g: 1, b: 1, a: 0.39215687}
+  crunchColor: {r: 1, g: 1, b: 0, a: 0.39215687}
+  burnoutColor: {r: 0.2679245, g: 0.2679245, b: 0.2679245, a: 0.39215687}
   workspacePrefab: {fileID: 906891675656665301, guid: 8459205bdbddaed4e8afd60f6075bfe1, type: 3}
   programmerPrefab: {fileID: 2211441429195267783, guid: a48d23d1aa3b10a4aacac7cefdbd2ace, type: 3}
 --- !u!1 &1616114630

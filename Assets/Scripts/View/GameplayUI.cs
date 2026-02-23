@@ -18,6 +18,12 @@ public class GameplayUI : MonoBehaviour
     private float _cellSize = 100f;
 
     [Space]
+    [SerializeField] private Image crunchIndicator;
+    [SerializeField] private Color defaultColor;
+    [SerializeField] private Color crunchColor;
+    [SerializeField] private Color burnoutColor;
+
+    [Space]
     [SerializeField] private GameObject workspacePrefab;
     [SerializeField] private GameObject programmerPrefab;
     private int _workspacesAmount;
@@ -78,6 +84,19 @@ public class GameplayUI : MonoBehaviour
             if (freeWorkspace == null) continue;
 
             freeWorkspace.InitProgrammer(programmerData);
+        }
+
+        switch (_data.studioData.programmersState)
+        {
+            case ProgrammersState.Idle:
+                crunchIndicator.color = defaultColor;
+                break;
+            case ProgrammersState.Crunching:
+                crunchIndicator.color = crunchColor;
+                break;
+            case ProgrammersState.Burnout:
+                crunchIndicator.color = burnoutColor;
+                break;
         }
     }
 
