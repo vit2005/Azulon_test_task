@@ -23,8 +23,6 @@ public class MainUI : MonoBehaviour
 
     private void InitPlayerData()
     {
-        gameplayUI.Init(GameController.Instance.PlayerData);
-
         foreach (var item in GameController.Instance.PlayerData.inventoryData.programmers)
         {
             item.icon = iconsCollection.icons.First(x => x.id == item.iconId).icon;
@@ -33,6 +31,8 @@ public class MainUI : MonoBehaviour
         {
             item.icon = iconsCollection.icons.First(x => x.id == item.iconId).icon;
         }
+
+        gameplayUI.Init(GameController.Instance.PlayerData);
     }
     private void InitInventory()
     {
